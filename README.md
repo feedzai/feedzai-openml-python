@@ -31,7 +31,7 @@ The provider can be pulled from Maven Central:
 [![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/feedzai/openml-scikit/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.feedzai/openml-scikit)
 
 Another implementation, available in module `openml-scikit` adds support for models built with
-[Scikit-learn](http://scikit-learn.org/stable/index.html).
+[scikit-learn](http://scikit-learn.org/stable/index.html).
 
 This module can be pulled from Maven Central:
 ```xml
