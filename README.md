@@ -5,7 +5,7 @@
 
 Implementations of the Feedzai OpenML API to allow support for machine
 learning models in [Python](https://www.python.org/)
-using [Jep](https://github.com/ninia/jep). 
+using [Java Embedded Python](https://github.com/ninia/jep). 
 
 ## Modules
 
