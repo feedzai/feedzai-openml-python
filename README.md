@@ -1,7 +1,7 @@
 # Feedzai OpenML Providers for Python
 [![Build Status](https://travis-ci.com/feedzai/feedzai-openml-python.svg?branch=hf-0.1.X)](https://travis-ci.com/feedzai/feedzai-openml-python)
 [![codecov](https://codecov.io/gh/feedzai/feedzai-openml-python/branch/hf-0.1.X/graph/badge.svg)](https://codecov.io/gh/feedzai/feedzai-openml-python)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4cb28e8bf4104cffa20812e207514b9b)](https://www.codacy.com/app/feedzai/feedzai-openml-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=feedzai/feedzai-openml-python&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/4cb28e8bf4104cffa20812e207514b9b?branch=hf-0.1.X)](https://www.codacy.com/app/feedzai/feedzai-openml-python?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=feedzai/feedzai-openml-python&amp;utm_campaign=Badge_Grade)
 
 Implementations of the Feedzai OpenML API to allow support for machine
 learning models in [Python](https://www.python.org/)
