@@ -12,12 +12,12 @@ using [Java Embedded Python](https://github.com/ninia/jep).
 ### Generic Python
 [![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/feedzai/openml-generic-python/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.feedzai/openml-generic-python)
 
-You can find in the `openml-generic-python` module a provider that allows
-users to load in code that conforms to a simple API.
+The `openml-generic-python` module contains a provider that allows
+developers to load code that conforms to a simple API.
 This is the most powerful approach (yet more cumbersome) since models
 can actually hold state.
 
-The provider can be pulled from Maven Central:
+Pull the provider from Maven Central:
 ```xml
 <dependency>
   <groupId>com.feedzai</groupId>
@@ -30,10 +30,10 @@ The provider can be pulled from Maven Central:
 ### Scikit-learn
 [![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/feedzai/openml-scikit/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.feedzai/openml-scikit)
 
-Another implementation, available in module `openml-scikit` adds support for models built with
+The implementation in the `openml-scikit` module adds support for models built with
 [scikit-learn](http://scikit-learn.org/stable/index.html).
 
-This module can be pulled from Maven Central:
+Pull this module from Maven Central:
 ```xml
 <dependency>
   <groupId>com.feedzai</groupId>
@@ -44,29 +44,29 @@ This module can be pulled from Maven Central:
 ```
 
 ## Building
-This is a maven project which you can build using
+This is a Maven project which you can build using the following command:
 ```bash
 mvn clean install
 ```
 
 ## Environment
 
-To use these providers you need to have the Python 3.6 with the following packages installed on your environment:
+To use these providers you need to have Python 3.6 with the following packages installed in your environment:
     * numpy
     * scipy
     * jep (this requires JAVA_HOME to be configured)
     * scikit-learn (for the scikit provider)
     
-It should be taken into account that this section only describes the known prerequisites that are common to any model generated in Python.
-Before importing a model you need to ensure the required packages for that model are also installed.
+Note that this section only describes the known prerequisites that are common to any model generated in Python.
+Before importing a model you need to ensure that the required packages for that model are also installed.
 
 ## Running the tests 
 
-To actually run the tests two other configurations may be necessary for Jep to work properly:
+To actually run the tests, two other configurations may be necessary for Jep to work properly:
     * The java.library.path property needs to point to the Jep library. An approach for this that typically works is setting
     the `LD_LIBRARY_PATH` environment variable: `export LD_LIBRARY_PATH=/...path to.../python3.6/site-packages/jep:$LD_LIBRARY_PATH`
     * Depending on the environment and package manager it may also be necessary to set the `LD_PRELOAD` variable to include 
-    the python library: `export LD_PRELOAD=/...path to.../lib/libpython3.6m.so`
+    the Python library: `export LD_PRELOAD=/...path to.../lib/libpython3.6m.so`
 
 
 Feedzai has built a helpful docker image for testing, [available on docker hub](https://hub.docker.com/r/feedzai/oracle-jep-miniconda/),
