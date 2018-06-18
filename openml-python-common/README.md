@@ -16,16 +16,18 @@ To use and run tests from this module you should install and compile JEP for you
 Suggested installation steps:
 1. Install anaconda (https://anaconda.org/)
 2. Create a new environment:
-    - conda create --name myenv python=3
+    - `conda create --name myenv python=3`
 3. Load/Activate your environment:
-    - source activate myenv
+    - `source activate myenv`
 4. Install pip and python dependencies with conda:
-    - conda install pip numpy
+    - `conda install pip numpy`
 5. Install Jep through pip (it is not available through conda):
-    - pip install jep
+    - `pip install jep`
 6. Add environment variables pointing to the environment's bin folder
-    - Add these to your ~/.profile and logout+login:
-    export PATH=</path/to/your/anaconda/instalation>/envs/myenv/bin:$PATH
+    - Add these to your `~/.profile` and logout+login:
+    
+```
+export PATH=</path/to/your/anaconda/instalation>/envs/myenv/bin:$PATH
     export LD_LIBRARY_PATH=</path/to/your/anaconda/instalation>/envs/myenv/lib/<python-version-you-installed>/site-packages/jep:$LD_LIBRARY_PATH
     export LD_PRELOAD=</path/to/your/anaconda/instalation>/envs/myenv/lib/libpython<your-python-version>m.so
 
@@ -34,3 +36,4 @@ Suggested installation steps:
     export PATH=$ANACONDA_PATH/envs/myenv/bin:$PATH
     export LD_LIBRARY_PATH=$ANACONDA_PATH/envs/myenv/lib/python3.6/site-packages/jep:$LD_LIBRARY_PATH
     export LD_PRELOAD=$ANACONDA_PATH/envs/myenv/lib/libpython3.6m.so
+```
