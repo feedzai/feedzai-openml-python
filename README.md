@@ -13,7 +13,7 @@ using [Java Embedded Python](https://github.com/ninia/jep).
 [![Maven metadata URI](https://img.shields.io/maven-metadata/v/http/central.maven.org/maven2/com/feedzai/openml-generic-python/maven-metadata.xml.svg)](https://mvnrepository.com/artifact/com.feedzai/openml-generic-python)
 
 The `openml-generic-python` module contains a provider that allows
-developers to load code that conforms to a simple API.
+developers to load Python code that conforms to a simple API.
 This is the most powerful approach (yet more cumbersome) since models
 can actually hold state.
 
@@ -52,7 +52,8 @@ mvn clean install
 ## Environment
 
 To use these providers you need to have Python 3.6 with the following packages installed in your environment:
-    * numpy
+
+    * numpy 
     * scipy
     * jep (this requires JAVA_HOME to be configured)
     * scikit-learn (for the scikit provider)
@@ -63,6 +64,7 @@ Before importing a model you need to ensure that the required packages for that 
 ## Running the tests 
 
 To actually run the tests, two other configurations may be necessary for Jep to work properly:
+
     * The java.library.path property needs to point to the Jep library. An approach for this that typically works is setting
     the `LD_LIBRARY_PATH` environment variable: `export LD_LIBRARY_PATH=/...path to.../python3.6/site-packages/jep:$LD_LIBRARY_PATH`
     * Depending on the environment and package manager it may also be necessary to set the `LD_PRELOAD` variable to include 
