@@ -39,3 +39,7 @@ When running the java process that will use this provider, be sure to have confi
 ```bash
 export JAVA_LIBRARY_PATH=/usr/local/anaconda3/envs/scikit-env-test/lib
 ```
+
+### Usage
+
+When the user [imports a model](https://docs.feedzai.com/display/pulse/Importing+an+external+model) to Pulse using this provider, the import assumes a folder called ```model```, containing a pickle file (.pkl).
