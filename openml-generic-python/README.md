@@ -20,3 +20,8 @@ def classify(self, instance):
 ### Usage
 
 When the user imports a model to the Feedzai platform using this provider, the import assumes a folder called ```script``` containing the Python code.
+
+    .
+    └── random-forest-v1
+        └── script
+            └── classifier.py
