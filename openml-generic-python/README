@@ -16,3 +16,12 @@ def classify(self, instance):
     raise NotImplementedError("This must be implemented by a concrete adapter.")
 
 ``` 
+
+### Usage
+
+When the user imports a model to the Feedzai platform using this provider, the import assumes a folder called ```script``` containing the Python code.
+
+    .
+    └── random-forest-v1
+        └── script
+            └── classifier.py
