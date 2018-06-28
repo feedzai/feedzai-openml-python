@@ -29,6 +29,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
+import java.util.Iterator;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -144,6 +145,14 @@ public class ScikitModelProviderTest extends AbstractProviderModelLoadTest<Class
     @Override
     public Instance getDummyInstance() {
         return TEST_DATA_SET.getInstances().next();
+    }
+
+    @Override
+    public Instance getDummyInstanceDifferentResult() {
+        final Iterator<Instance> instances = TEST_DATA_SET.getInstances();
+        // ignores the first instance because it is being used by #getDummyInstance()
+        instances.next();
+        return instances.next();
     }
 
     @Override
