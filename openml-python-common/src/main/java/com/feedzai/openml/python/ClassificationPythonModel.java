@@ -23,7 +23,7 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.python.jep.instance.JepInstance;
-import com.feedzai.util.data.encoding.EncodingHelper;
+import com.feedzai.openml.util.data.encoding.EncodingHelper;
 import com.google.common.collect.ImmutableList;
 import jep.JepException;
 import jep.NDArray;
