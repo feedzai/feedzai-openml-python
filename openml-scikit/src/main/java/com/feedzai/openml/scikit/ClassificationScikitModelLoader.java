@@ -22,8 +22,8 @@ import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.python.AbstractClassificationPythonModelLoaderImpl;
 import com.feedzai.openml.python.ClassificationPythonModel;
 import com.feedzai.openml.python.jep.instance.JepInstance;
-import com.feedzai.util.load.LoadModelUtils;
-import com.feedzai.util.validate.ValidationUtils;
+import com.feedzai.openml.util.load.LoadModelUtils;
+import com.feedzai.openml.util.validate.ValidationUtils;
 import com.google.common.collect.ImmutableList;
 
 import java.nio.file.Path;

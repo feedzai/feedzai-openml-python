@@ -20,11 +20,10 @@ import com.feedzai.openml.data.Instance;
 import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.mocks.MockDataset;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
-import com.feedzai.util.algorithm.GenericAlgorithm;
-import com.feedzai.util.algorithm.MLAlgorithmEnum;
-import com.feedzai.util.provider.AbstractProviderModelLoadTest;
+import com.feedzai.openml.util.algorithm.GenericAlgorithm;
+import com.feedzai.openml.util.algorithm.MLAlgorithmEnum;
+import com.feedzai.openml.util.provider.AbstractProviderModelLoadTest;
 import com.google.common.collect.ImmutableSet;
-import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -40,7 +39,6 @@ import java.util.stream.Collectors;
  * @author Paulo Pereira (paulo.pereira@feedzai.com)
  * @since 0.1.0
  */
-//@Ignore("PULSEDEV-23370 - Tests using Jep currently don't work in Jenkins")
 public class PythonModelProviderTest extends AbstractProviderModelLoadTest<ClassificationPythonModel,
         ClassificationPythonModelLoader, PythonModelProvider> {
 
