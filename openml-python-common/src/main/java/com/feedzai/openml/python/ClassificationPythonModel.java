@@ -23,6 +23,7 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.python.jep.instance.JepInstance;
+import com.feedzai.openml.util.data.ClassificationDatasetSchemaUtil;
 import com.feedzai.openml.util.data.encoding.EncodingHelper;
 import com.google.common.collect.ImmutableList;
 import jep.JepException;
@@ -32,6 +33,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.nio.file.Path;
+import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
@@ -188,10 +190,30 @@ public class ClassificationPythonModel implements ClassificationMLModel {
         try {
             asNotNullable = this.classToIndexConverter.apply(classValue);
         } catch (final NullPointerException e) {
-            logger.warn("Unexpected class provided by model: {}", classValue, e);
+            final String msg = String.format("Unexpected class provided by model: %s. Expected values: %s",
+                    classValue,
+                    getClassValues(this.schema)
+            );
+
+            logger.warn(msg, e);
             throw e;
         }
         return asNotNullable;
+    }
+
+    // TODO remove, and use https://github.com/feedzai/feedzai-openml/pull/31/files
+    private Collection<String> getClassValues(final DatasetSchema schema) {
+        final AbstractValueSchema valueSchema = schema
+                .getFieldSchemas()
+                .get(schema.getTargetIndex())
+                .getValueSchema();
+
+        if (valueSchema instanceof CategoricalValueSchema) {
+            return ((CategoricalValueSchema) valueSchema).getNominalValues();
+        } else {
+            throw new RuntimeException("The target variable is not a categorical value: " + valueSchema);
+        }
+
     }
 
     /**
