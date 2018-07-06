@@ -23,17 +23,18 @@ Suggested installation steps:
     - `conda install pip numpy`
 5. Install Jep through pip (it is not available through conda):
     - `pip install jep`
+    - alternatively, follow the install instructions at https://github.com/ninia/jep#installation
 6. Add environment variables pointing to the environment's bin folder
     - Add these to your `~/.profile` and logout+login:
     
 ```
 export PATH=</path/to/your/anaconda/instalation>/envs/myenv/bin:$PATH
-    export LD_LIBRARY_PATH=</path/to/your/anaconda/instalation>/envs/myenv/lib/<python-version-you-installed>/site-packages/jep:$LD_LIBRARY_PATH
-    export LD_PRELOAD=</path/to/your/anaconda/instalation>/envs/myenv/lib/libpython<your-python-version>m.so
+export LD_LIBRARY_PATH=</path/to/your/anaconda/instalation>/envs/myenv/lib/<python-version-you-installed>/site-packages/jep:$LD_LIBRARY_PATH
+export LD_PRELOAD=</path/to/your/anaconda/instalation>/envs/myenv/lib/libpython<your-python-version>m.so
 
-    Example in my case:
-    export ANACONDA_PATH=/home/luis.reis/anaconda3
-    export PATH=$ANACONDA_PATH/envs/myenv/bin:$PATH
-    export LD_LIBRARY_PATH=$ANACONDA_PATH/envs/myenv/lib/python3.6/site-packages/jep:$LD_LIBRARY_PATH
-    export LD_PRELOAD=$ANACONDA_PATH/envs/myenv/lib/libpython3.6m.so
+Example in my case:
+export ANACONDA_PATH=/home/luis.reis/anaconda3
+export PATH=$ANACONDA_PATH/envs/myenv/bin:$PATH
+export LD_LIBRARY_PATH=$ANACONDA_PATH/envs/myenv/lib/python3.6/site-packages/jep:$LD_LIBRARY_PATH
+export LD_PRELOAD=$ANACONDA_PATH/envs/myenv/lib/libpython3.6m.so
 ```
