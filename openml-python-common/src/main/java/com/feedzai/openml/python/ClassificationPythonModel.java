@@ -167,8 +167,15 @@ public class ClassificationPythonModel implements ClassificationMLModel {
         );
 
         // Although the Python API returns a double[] for every input instance, going through the NDArray flattens that
-        // into a single double[]
-        return result.getData();
+        // into a single double[].
+        // Note that some models return a float[], thus we need to do this workaround, but better approaches may exist.
+        final Object data = result.getData();
+        if(data instanceof float[]) {
+            final float[] x = (float[]) data;
+            return IntStream.range(0, x.length).mapToDouble(i -> x[i]).toArray();
+        } else {
+            return (double[]) data;
+        }
     }
 
     @Override
