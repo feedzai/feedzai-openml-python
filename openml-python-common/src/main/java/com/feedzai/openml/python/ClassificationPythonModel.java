@@ -33,7 +33,6 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.nio.file.Path;
-import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
@@ -190,30 +189,21 @@ public class ClassificationPythonModel implements ClassificationMLModel {
         try {
             asNotNullable = this.classToIndexConverter.apply(classValue);
         } catch (final NullPointerException e) {
-            final String msg = String.format("Unexpected class provided by model: %s. Expected values: %s",
+
+            final AbstractValueSchema targetVarSchema = this.schema.getTargetFieldSchema().getValueSchema();
+            final Function<CategoricalValueSchema, String> block = targetSchema -> String.format(
+                    "Unexpected class provided by model: %s. Expected values: %s",
                     classValue,
-                    getClassValues(this.schema)
+                    targetSchema.getNominalValues()
             );
+
+            final String msg = ClassificationDatasetSchemaUtil.withCategoricalValueSchema(targetVarSchema, block)
+                    .orElseThrow(() -> new RuntimeException("The target variable is not a categorical value: " + targetVarSchema));
 
             logger.warn(msg, e);
             throw e;
         }
         return asNotNullable;
-    }
-
-    // TODO remove, and use https://github.com/feedzai/feedzai-openml/pull/31/files
-    private Collection<String> getClassValues(final DatasetSchema schema) {
-        final AbstractValueSchema valueSchema = schema
-                .getFieldSchemas()
-                .get(schema.getTargetIndex())
-                .getValueSchema();
-
-        if (valueSchema instanceof CategoricalValueSchema) {
-            return ((CategoricalValueSchema) valueSchema).getNominalValues();
-        } else {
-            throw new RuntimeException("The target variable is not a categorical value: " + valueSchema);
-        }
-
     }
 
     /**
