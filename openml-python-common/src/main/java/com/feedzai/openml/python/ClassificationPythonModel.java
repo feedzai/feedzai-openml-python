@@ -23,6 +23,7 @@ import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.python.jep.instance.JepInstance;
+import com.feedzai.openml.util.data.ClassificationDatasetSchemaUtil;
 import com.feedzai.openml.util.data.encoding.EncodingHelper;
 import com.google.common.collect.ImmutableList;
 import jep.JepException;
@@ -188,7 +189,18 @@ public class ClassificationPythonModel implements ClassificationMLModel {
         try {
             asNotNullable = this.classToIndexConverter.apply(classValue);
         } catch (final NullPointerException e) {
-            logger.warn("Unexpected class provided by model: {}", classValue, e);
+
+            final AbstractValueSchema targetVarSchema = this.schema.getTargetFieldSchema().getValueSchema();
+            final Function<CategoricalValueSchema, String> block = targetSchema -> String.format(
+                    "Unexpected class provided by model: %s. Expected values: %s",
+                    classValue,
+                    targetSchema.getNominalValues()
+            );
+
+            final String msg = ClassificationDatasetSchemaUtil.withCategoricalValueSchema(targetVarSchema, block)
+                    .orElseThrow(() -> new RuntimeException("The target variable is not a categorical value: " + targetVarSchema));
+
+            logger.warn(msg, e);
             throw e;
         }
         return asNotNullable;
