@@ -11,7 +11,9 @@ It also depends on a couple of python libraries that should be on your Java libr
 
 This module compiles without any installation, as it depends on a default Jar file for JEP, installed by Maven.
 
-To use and run tests from this module you should install and compile JEP for your Python environment.
+To use and run tests from this module you should install and compile JEP for your Python environment. 
+
+If you want to do some quick prototyping or test your python based provider, you may find useful to use [this docker image](https://github.com/feedzai/oracle-jep-miniconda) which already contains jep and other requirements installed.
 
 Suggested installation steps:
 1. Install anaconda (https://anaconda.org/)
