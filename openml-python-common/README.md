@@ -23,7 +23,7 @@ Suggested installation steps:
     - `conda install pip numpy`
 5. Install Jep through pip (it is not available through conda):
     - `pip install jep`
-    - alternatively, follow the install instructions at https://github.com/ninia/jep#installation
+    - some environments have shown problems installing jep through pip. Alternatively you can follow the install instructions at https://github.com/ninia/jep#installation
 6. Add environment variables pointing to the environment's bin folder
     - Add these to your `~/.profile` and logout+login:
     
