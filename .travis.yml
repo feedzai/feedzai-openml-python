@@ -16,8 +16,8 @@ branches:
     - /^hf-.*$/
 
 before_install:
-  - docker pull feedzai/oracle-jep-miniconda:1.0.1
-  - docker run -v $(pwd):/opt/openml -d --name test-container feedzai/oracle-jep-miniconda:1.0.1 top -b
+  - docker pull feedzai/oracle-jep-miniconda:1.0.2
+  - docker run -v $(pwd):/opt/openml -d --name test-container feedzai/oracle-jep-miniconda:1.0.2 top -b
 
 install:
   - docker exec -it test-container bash -v /opt/openml/scripts/maven-with-jep.sh install -f /opt/openml/pom.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V
