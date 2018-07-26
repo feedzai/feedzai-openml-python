@@ -1,0 +1,49 @@
+{
+  "targetIndex": 4,
+  "fieldSchemas": [
+    {
+      "fieldIndex": 4,
+      "fieldName": "target",
+      "valueSchema": {
+        "@type": "categorical",
+        "allowMissing": false,
+        "nominalValues": [
+          "0",
+          "1"
+        ]
+      }
+    },
+    {
+      "fieldIndex": 0,
+      "fieldName": "field0",
+      "valueSchema": {
+        "@type": "numeric",
+        "allowMissing": false
+      }
+    },
+    {
+      "fieldIndex": 1,
+      "fieldName": "field1",
+      "valueSchema": {
+        "@type": "numeric",
+        "allowMissing": false
+      }
+    },
+    {
+      "fieldIndex": 2,
+      "fieldName": "field2",
+      "valueSchema": {
+        "@type": "numeric",
+        "allowMissing": false
+      }
+    },
+    {
+      "fieldIndex": 3,
+      "fieldName": "field3",
+      "valueSchema": {
+        "@type": "numeric",
+        "allowMissing": false
+      }
+    }
+  ]
+}
