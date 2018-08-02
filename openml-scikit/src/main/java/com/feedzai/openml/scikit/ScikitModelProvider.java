@@ -19,6 +19,7 @@ package com.feedzai.openml.scikit;
 import com.feedzai.openml.provider.MachineLearningProvider;
 import com.feedzai.openml.provider.descriptor.MLAlgorithmDescriptor;
 import com.feedzai.openml.util.algorithm.MLAlgorithmEnum;
+import com.google.auto.service.AutoService;
 
 import java.util.Optional;
 import java.util.Set;
@@ -29,6 +30,7 @@ import java.util.Set;
  * @author Luis Reis (luis.reis@feedzai.com)
  * @since 0.1.0
  */
+@AutoService(MachineLearningProvider.class)
 public class ScikitModelProvider implements MachineLearningProvider<ClassificationScikitModelLoader> {
 
     /**
