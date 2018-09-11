@@ -1,7 +1,7 @@
 Scikit-learn ML Api Provider Installation
 ------------------------------------------------------------
 
-This module uses JEP (https://github.com/ninia/jep) to load and use models trained in scikit-learn.
+This module uses [JEP](https://github.com/ninia/jep) to load and use models trained in scikit-learn.
 It also depends on a couple of Python libraries that should be on your Java library path.
 
 This module compiles without any installation depending on a default Jar file for Jep in maven.
