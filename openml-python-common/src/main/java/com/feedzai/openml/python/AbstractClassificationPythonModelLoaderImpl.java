@@ -26,6 +26,7 @@ import com.feedzai.openml.util.load.LoadSchemaUtils;
 import com.feedzai.openml.util.validate.ClassificationValidationUtils;
 import com.feedzai.openml.util.validate.ValidationUtils;
 import com.google.common.base.Preconditions;
+import com.google.common.collect.ImmutableMap;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -59,6 +60,8 @@ public abstract class AbstractClassificationPythonModelLoaderImpl implements Mac
                                                final DatasetSchema schema) throws ModelLoadingException {
 
         logger.info("Trying to load a model in path [{}]...", modelPath);
+
+        ClassificationValidationUtils.validateParamsModelToLoad(this, modelPath, schema, ImmutableMap.of());
 
         final JepInstance jepInstance = new JepInstance();
         final String id = generateNamesafeId();
