@@ -19,9 +19,8 @@ def classify(self, instance):
 
 ### Usage
 
-When the user imports a model to the Feedzai platform using this provider, the import assumes a folder called ```script``` containing the Python code.
+When the user imports a model with path '/random-forest-v1' to the Feedzai platform using this provider, then this provider assumes a 'classifier.py' file within it:
 
     .
     └── random-forest-v1
-        └── script
-            └── classifier.py
+        └── classifier.py
