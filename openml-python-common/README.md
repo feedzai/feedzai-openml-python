@@ -40,3 +40,15 @@ export PATH=$ANACONDA_PATH/envs/myenv/bin:$PATH
 export LD_LIBRARY_PATH=$ANACONDA_PATH/envs/myenv/lib/python3.6/site-packages/jep:$LD_LIBRARY_PATH
 export LD_PRELOAD=$ANACONDA_PATH/envs/myenv/lib/libpython3.6m.so
 ```
+
+7. If you need to share Python modules across sub-interpreters, you will need to create a "python-packages.xml" file where you define the modules to be shared. By default the provider is already sharing the "numpy" and "tensorflow" modules. This is a workaround for the issues with CPython extensions.
+    - Remember that this file should be added to the classpath of your program.
+
+```
+<?xml version="1.0"?>
+<python>
+   <package>my_package_1</package>
+   <package>my_package_2</package>
+</python>
+
+``` 
