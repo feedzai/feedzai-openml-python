@@ -15,12 +15,16 @@
  */
 package com.feedzai.openml.python.jep.instance;
 
+import com.feedzai.openml.python.modules.SharedModulesParser;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.util.concurrent.Uninterruptibles;
 import jep.Jep;
+import jep.JepConfig;
 import jep.JepException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.Set;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
@@ -97,8 +101,18 @@ public class JepInstance implements Runnable {
      */
     @Override
     public void run() {
+        final Set<String> sharedModules = ImmutableSet.<String>builder()
+                .add("tensorflow")
+                .add("numpy")
+                .addAll(new SharedModulesParser().getSharedModules())
+                .build();
+        logger.debug("Python modules to be shared: {}", String.join(",", sharedModules.toString()));
 
-        try (final Jep jep = new Jep(false)) {
+        final JepConfig jepConfig = new JepConfig()
+                .addSharedModules(sharedModules.toArray(new String[0]))
+                .setInteractive(false);
+
+        try (final Jep jep = new Jep(jepConfig)) {
             while (this.running) {
                 this.evaluationQueue.take().evaluate(jep);
             }
