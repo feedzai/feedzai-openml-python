@@ -28,10 +28,6 @@ script:
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-notifications:
-    # enables comments in the branch with the CI results
-    webhooks: https://www.travisbuddy.com/
-
 before_deploy:
   # Clean up all target dirs created by mvn inside the container so that the deploy script works (permission errors)
   - docker exec -it test-container bash -v mvn -f /opt/openml/pom.xml clean
