@@ -34,6 +34,7 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -121,11 +122,11 @@ public class ClassificationPythonModel implements ClassificationMLModel {
                                      final String id,
                                      final String classifyFunctionName,
                                      final String getClassDistributionFunctionName) {
-
+        final Optional<Integer> targetIndexOrNone = schema.getTargetIndex();
         this.jepInstance = jepInstance;
         this.schema = schema;
         this.predictiveFieldIndexes = IntStream.range(0, schema.getFieldSchemas().size())
-                .filter(index -> index != schema.getTargetIndex())
+                .filter(index -> !targetIndexOrNone.isPresent() || index != targetIndexOrNone.get())
                 .toArray();
 
         this.id = id;
