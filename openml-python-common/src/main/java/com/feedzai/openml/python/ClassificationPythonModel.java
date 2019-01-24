@@ -28,7 +28,6 @@ import com.feedzai.openml.util.data.encoding.EncodingHelper;
 import com.google.common.collect.ImmutableList;
 import jep.JepException;
 import jep.NDArray;
-import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
