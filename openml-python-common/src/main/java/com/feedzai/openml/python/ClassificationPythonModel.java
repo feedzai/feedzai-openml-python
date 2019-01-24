@@ -35,7 +35,6 @@ import org.slf4j.LoggerFactory;
 import java.io.Serializable;
 import java.nio.file.Path;
 import java.util.List;
-import java.util.Optional;
 import java.util.concurrent.ExecutionException;
 import java.util.function.Function;
 import java.util.stream.IntStream;
@@ -135,13 +134,6 @@ public class ClassificationPythonModel implements ClassificationMLModel {
         this.classifyFunctionName = classifyFunctionName;
         this.getClassDistributionFunctionName = getClassDistributionFunctionName;
         this.classToIndexConverter = getClassToIndexConverter(schema);
-    }
-
-    /**
-     * @return a copy of the predictive field indexes used by the model.
-     */
-    int[] getPredictiveFieldIndexes() {
-        return ArrayUtils.clone(this.predictiveFieldIndexes);
     }
 
     /**
