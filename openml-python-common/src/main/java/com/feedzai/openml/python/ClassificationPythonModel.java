@@ -28,6 +28,7 @@ import com.feedzai.openml.util.data.encoding.EncodingHelper;
 import com.google.common.collect.ImmutableList;
 import jep.JepException;
 import jep.NDArray;
+import org.apache.commons.lang3.ArrayUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -122,17 +123,25 @@ public class ClassificationPythonModel implements ClassificationMLModel {
                                      final String id,
                                      final String classifyFunctionName,
                                      final String getClassDistributionFunctionName) {
-        final Optional<Integer> targetIndexOrNone = schema.getTargetIndex();
+        final int targetIndex = schema.getTargetIndex()
+                .orElseThrow(() -> new IllegalArgumentException("Python classification models do not support datasets without schema."));
         this.jepInstance = jepInstance;
         this.schema = schema;
         this.predictiveFieldIndexes = IntStream.range(0, schema.getFieldSchemas().size())
-                .filter(index -> !targetIndexOrNone.isPresent() || index != targetIndexOrNone.get())
+                .filter(index -> index != targetIndex)
                 .toArray();
 
         this.id = id;
         this.classifyFunctionName = classifyFunctionName;
         this.getClassDistributionFunctionName = getClassDistributionFunctionName;
         this.classToIndexConverter = getClassToIndexConverter(schema);
+    }
+
+    /**
+     * @return a copy of the predictive field indexes used by the model.
+     */
+    int[] getPredictiveFieldIndexes() {
+        return ArrayUtils.clone(this.predictiveFieldIndexes);
     }
 
     /**
