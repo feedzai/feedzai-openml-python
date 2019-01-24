@@ -121,11 +121,12 @@ public class ClassificationPythonModel implements ClassificationMLModel {
                                      final String id,
                                      final String classifyFunctionName,
                                      final String getClassDistributionFunctionName) {
-
+        final int targetIndex = schema.getTargetIndex()
+                .orElseThrow(() -> new IllegalArgumentException("Python classification models do not support datasets without schema."));
         this.jepInstance = jepInstance;
         this.schema = schema;
         this.predictiveFieldIndexes = IntStream.range(0, schema.getFieldSchemas().size())
-                .filter(index -> index != schema.getTargetIndex())
+                .filter(index -> index != targetIndex)
                 .toArray();
 
         this.id = id;
