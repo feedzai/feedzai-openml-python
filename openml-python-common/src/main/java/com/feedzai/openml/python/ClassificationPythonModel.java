@@ -20,6 +20,7 @@ import com.feedzai.openml.data.Instance;
 import com.feedzai.openml.data.schema.AbstractValueSchema;
 import com.feedzai.openml.data.schema.CategoricalValueSchema;
 import com.feedzai.openml.data.schema.DatasetSchema;
+import com.feedzai.openml.data.schema.FieldSchema;
 import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.python.jep.instance.JepInstance;
@@ -191,7 +192,9 @@ public class ClassificationPythonModel implements ClassificationMLModel {
             asNotNullable = this.classToIndexConverter.apply(classValue);
         } catch (final NullPointerException e) {
 
-            final AbstractValueSchema targetVarSchema = this.schema.getTargetFieldSchema().getValueSchema();
+            final AbstractValueSchema targetVarSchema = this.schema.getTargetFieldSchema()
+                    .map(FieldSchema::getValueSchema)
+                    .orElseThrow(() -> new IllegalStateException("The schema required by this model must refer a target field."));
             final Function<CategoricalValueSchema, String> block = targetSchema -> String.format(
                     "Unexpected class provided by model: %s. Expected values: %s",
                     classValue,
@@ -255,7 +258,9 @@ public class ClassificationPythonModel implements ClassificationMLModel {
      * @return The conversion function.
      */
     private Function<Serializable, Integer> getClassToIndexConverter(final DatasetSchema schema) {
-        final AbstractValueSchema targetVariableSchema = schema.getTargetFieldSchema().getValueSchema();
+        final AbstractValueSchema targetVariableSchema = schema.getTargetFieldSchema()
+                .map(FieldSchema::getValueSchema)
+                .orElseThrow(() -> new IllegalArgumentException("Python classification models do not support datasets without schema."));
         if (!(targetVariableSchema instanceof CategoricalValueSchema)) {
             logger.warn("Provided schema's target field is not categorical: {}", schema);
             throw new IllegalArgumentException("Classification models require Categorical target fields. Got " + targetVariableSchema);
