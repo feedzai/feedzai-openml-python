@@ -21,7 +21,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
  * Tests the behaviour of a {@link ClassificationPythonModel}.
  *
  * @author Joao Sousa (joao.sousa@feedzai.com)
- * @since @@@feedzai.next.release@@@
  */
 public class ClassificationPythonModelTest {
 

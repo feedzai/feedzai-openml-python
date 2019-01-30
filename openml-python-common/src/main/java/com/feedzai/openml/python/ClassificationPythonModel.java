@@ -192,9 +192,11 @@ public class ClassificationPythonModel implements ClassificationMLModel {
             asNotNullable = this.classToIndexConverter.apply(classValue);
         } catch (final NullPointerException e) {
 
+            //noinspection OptionalGetWithoutIsPresent
             final AbstractValueSchema targetVarSchema = this.schema.getTargetFieldSchema()
                     .map(FieldSchema::getValueSchema)
-                    .orElseThrow(() -> new IllegalStateException("The schema required by this model must refer a target field."));
+                    // since the dataset schema is immutable and the target variable existence was already checked in construction
+                    .get();
             final Function<CategoricalValueSchema, String> block = targetSchema -> String.format(
                     "Unexpected class provided by model: %s. Expected values: %s",
                     classValue,
@@ -204,7 +206,7 @@ public class ClassificationPythonModel implements ClassificationMLModel {
             final String msg = ClassificationDatasetSchemaUtil.withCategoricalValueSchema(targetVarSchema, block)
                     .orElseThrow(() -> new RuntimeException("The target variable is not a categorical value: " + targetVarSchema));
 
-            logger.warn(msg, e);
+            logger.error(msg, e);
             throw e;
         }
         return asNotNullable;
@@ -258,11 +260,14 @@ public class ClassificationPythonModel implements ClassificationMLModel {
      * @return The conversion function.
      */
     private Function<Serializable, Integer> getClassToIndexConverter(final DatasetSchema schema) {
+        //noinspection OptionalGetWithoutIsPresent
         final AbstractValueSchema targetVariableSchema = schema.getTargetFieldSchema()
                 .map(FieldSchema::getValueSchema)
-                .orElseThrow(() -> new IllegalArgumentException("Python classification models do not support datasets without schema."));
+                // since the dataset schema is immutable and the target variable existence was already checked in construction
+                .get();
+
         if (!(targetVariableSchema instanceof CategoricalValueSchema)) {
-            logger.warn("Provided schema's target field is not categorical: {}", schema);
+            logger.error("Provided schema's target field is not categorical: {}", schema);
             throw new IllegalArgumentException("Classification models require Categorical target fields. Got " + targetVariableSchema);
         }
         return EncodingHelper.classToIndexConverter((CategoricalValueSchema) targetVariableSchema);
