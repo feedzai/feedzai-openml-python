@@ -65,10 +65,9 @@ Before importing a model you need to ensure that the required packages for that 
 
 To actually run the tests, two other configurations may be necessary for Jep to work properly:
 
-    * The java.library.path property needs to point to the Jep library. An approach for this that typically works is setting
-    the `LD_LIBRARY_PATH` environment variable: `export LD_LIBRARY_PATH=/...path to.../python3.6/site-packages/jep:$LD_LIBRARY_PATH`
-    * Depending on the environment and package manager it may also be necessary to set the `LD_PRELOAD` variable to include 
-    the Python library: `export LD_PRELOAD=/...path to.../lib/libpython3.6m.so`
+* The java.library.path property needs to point to the Jep library. An approach for this that typically works is setting the `LD_LIBRARY_PATH` environment variable: `export LD_LIBRARY_PATH=/...path to.../python3.6/site-packages/jep:$LD_LIBRARY_PATH`
+    
+* Depending on the environment and package manager it may also be necessary to set the `LD_PRELOAD` variable to include the Python library: `export LD_PRELOAD=/...path to.../lib/libpython3.6m.so`
 
 
 Feedzai has built a helpful docker image for testing, [available on docker hub](https://hub.docker.com/r/feedzai/oracle-jep-miniconda/),
