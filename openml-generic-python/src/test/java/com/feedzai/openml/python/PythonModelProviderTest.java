@@ -105,6 +105,20 @@ public class PythonModelProviderTest extends AbstractProviderModelLoadTest<Class
     public final ExpectedException exception = ExpectedException.none();
 
     /**
+     * Checks the method #classify() to ensure that generic-python classifies correctly the index of maximum value of the scores' list.
+     */
+    @Test
+    public void canGetClassDistributionMaxValueIndex() throws ModelLoadingException {
+
+        final ClassificationPythonModel model = getSecondModel();
+
+        final Instance instance = getDummyInstance();
+
+        this.canGetClassDistributionMaxValueIndex(model, instance);
+
+    }
+
+    /**
      * Tests loading a model that is not compatible with the given schema.
      * Should throw a ModelLoadingException.
      *
