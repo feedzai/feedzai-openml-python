@@ -19,6 +19,7 @@ package com.feedzai.openml.python;
 import com.feedzai.openml.data.Instance;
 import com.feedzai.openml.data.schema.DatasetSchema;
 import com.feedzai.openml.mocks.MockDataset;
+import com.feedzai.openml.model.ClassificationMLModel;
 import com.feedzai.openml.provider.exception.ModelLoadingException;
 import com.feedzai.openml.util.algorithm.GenericAlgorithm;
 import com.feedzai.openml.util.algorithm.MLAlgorithmEnum;
@@ -105,10 +106,14 @@ public class PythonModelProviderTest extends AbstractProviderModelLoadTest<Class
     public final ExpectedException exception = ExpectedException.none();
 
     /**
-     * Checks the method #classify() to ensure that generic-python classifies correctly the index of maximum value of the scores' list.
+     * Verifies that the {@link ClassificationMLModel#classify(Instance)} " returns the index of the greatest value in
+     * the class probability distribution produced by the calling
+     * {@link ClassificationMLModel#getClassDistribution(Instance)} on the model
+     *
+     * @see ClassificationMLModel
      */
     @Test
-    public void canGetClassDistributionMaxValueIndex() throws ModelLoadingException {
+    public void canGetClassDistributionMaxValueIndex() throws Exception {
 
         final ClassificationPythonModel model = getSecondModel();
 
