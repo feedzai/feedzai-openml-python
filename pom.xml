@@ -78,7 +78,7 @@
         <slf4j.version>1.7.25</slf4j.version>
         <assertj.version>3.7.0</assertj.version>
         <jackson.version>2.6.7</jackson.version>
-        <jackson-databind.version>2.6.7</jackson-databind.version>
+        <jackson-databind.version>2.9.10.4</jackson-databind.version>
         <openml-api.version>1.0.3</openml-api.version>
         <jep.version>3.7.0</jep.version>
     </properties>
