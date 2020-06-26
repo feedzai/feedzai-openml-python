@@ -47,6 +47,11 @@
             <artifactId>auto-service</artifactId>
         </dependency>
         <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
             <groupId>com.feedzai</groupId>
             <artifactId>openml-utils</artifactId>
             <type>test-jar</type>
