@@ -23,7 +23,7 @@ Pull the provider from Maven Central:
   <groupId>com.feedzai</groupId>
   <artifactId>openml-generic-python</artifactId>
   <!-- See project tags for latest version -->
-  <version>0.2.1</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
@@ -39,7 +39,7 @@ Pull this module from Maven Central:
   <groupId>com.feedzai</groupId>
   <artifactId>openml-scikit</artifactId>
   <!-- See project tags for latest version -->
-  <version>0.2.1</version>
+  <version>0.3.0</version>
 </dependency>
 ```
 
