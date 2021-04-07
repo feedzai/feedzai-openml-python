@@ -41,8 +41,16 @@ jobs:
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
-      - name: Build and test
-        run: mvn test -B
+      - name: Start Docker
+        run: |
+          docker pull feedzai/oracle-jep-miniconda:1.0.2 &&
+            docker run -v $(pwd):/opt/openml -d --name test-container feedzai/oracle-jep-miniconda:1.0.2 top -b
+
+      - name: Install in Docker
+        run: docker exec test-container bash -v /opt/openml/scripts/maven-with-jep.sh install -f /opt/openml/pom.xml -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+
+      - name: Test in Docker
+        run: docker exec test-container bash -v /opt/openml/scripts/maven-with-jep.sh -f /opt/openml/pom.xml test
 
       - uses: codecov/codecov-action@v1
         with:
